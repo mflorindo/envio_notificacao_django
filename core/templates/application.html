@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <form method="post">
+        {% csrf_token %}
+        <img class="card-img-top" src="holder.js/100px180/" alt="">
+        <div class="card-body">
+            <h4 class="card-title">Aplicação</h4>
+
+            <hr>
+
+            <div class="row">
+                <div class='col-md-4'>
+                    <label>Nome</label>
+                    {{ form.name }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <label>
+                        {{ form.is_web_push }} Web Push
+                    </label>
+                </div>
+
+                <div class="col-md-2">
+                    <label>
+                        {{ form.is_sms }} SMS
+                    </label>
+                </div>
+
+                <div class="col-md-2">
+                    <label>
+                        {{ form.is_email }} E-mail
+                    </label>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a class="btn btn-default" href="{% url 'application_list' %}" role="button">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+
+{% endblock content %}

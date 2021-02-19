@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <img class="card-img-top" src="holder.js/100px180/" alt="">
+        <div class="card-body">
+            <h4 class="card-title">Templates de Email</h4>
+            <hr>
+
+            <div class="row">
+                <div class='col-md-4'>
+                    <label>{{ form.title.label }}</label>
+                    {{ form.title }}
+                </div>
+     
+                <div class='col-md-4'>
+                    <label>{{ form.file.label }}</label>
+                    {{ form.file }}
+                </div>
+             
+
+            </div>
+
+            <div class="card-footer mt-2">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <a class="btn btn-default" href="{% url 'template_list' %}" role="button">Cancelar</a>
+            </div>
+    </form>
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <form method="post">
+        {% csrf_token %}
+        <img class="card-img-top" src="holder.js/100px180/" alt="">
+        <div class="card-body">
+            <h4 class="card-title">Web Push</h4>
+            <hr>
+
+            <div class="row">
+                <div class='col-md-4'>
+                    <label>Nome Site</label>
+                    {{ form.site_name }}
+                </div>
+                <div class='col-md-4'>
+                    <label>URL Site</label>
+                    {{ form.site_url }}
+                </div>
+                <div class='col-md-4'>
+                    <label>Icone</label>
+                    {{ form.icon }}
+                </div>
+                <div class='col-md-4'>
+                    <label>Mensagem Permissão</label>
+                    {{ form.message_permission }}
+                </div>
+                <div class='col-md-4'>
+                    <label>Texto Botão Permissão</label>
+                    {{ form.text_button_permission }}
+                </div>
+
+                <div class='col-md-4'>
+                    <label>Texto Botão Negação</label>
+                    {{ form.text_button_denied }}
+                </div>
+
+                <div class='col-md-4'>
+                    <label>Título Bem-Vindo</label>
+                    {{ form.title_welcome }}
+                </div>
+
+                <div class='col-md-4'>
+                    <label>Mensagem Bem-Vindo</label>
+                    {{ form.message_welcome }}
+                </div>
+
+                <div class='col-md-4'>
+                    <label>URL Destino</label>
+                    {{ form.link_destination }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label>
+                        {{ form.is_enabled_link }}
+                        Habilitar link de destino
+                    </label>
+                </div>
+
+
+
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <a class="btn btn-default" href="{% url 'application_list' %}" role="button">Cancelar</a>
+                {% if object %}
+                <a class="btn btn-danger float-right" href="{% url 'webpush_delete' object.id %}"
+                    role="button">Excluir</a>
+                {% endif %}    
+            </div>
+    </form>
+</div>
+
+
+{% endblock content %}

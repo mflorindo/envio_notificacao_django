@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <img class="card-img-top" src="holder.js/100px180/" alt="">
+    <div class="card-body">
+        <h4 class="card-title">Minhas Aplicações
+            <span class="float-right"><a name="" id="" class="btn btn-xs btn-primary" href="{% url 'application_new' %}"
+                    role="button">Nova
+                    Aplicação</a></span>
+        </h4>
+
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Aplicação</th>
+                    <th>Canais</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in objects  %}
+                <tr>
+                    <td scope="row">{{ item.name }}</td>
+                    <td>
+                        {% if item.is_web_push != False %}
+                        {% if item.webpush %}
+                        <a href="{% url 'webpush_update' item.webpush.id %}"> <i class="fas fa-comment"
+                                style="color:green" title="Web Push"></i></a>
+                        {% else %}
+                        <a href="{% url 'webpush_new' item.id %}"><i class="fas fa-comment" style="color:red"
+                                title="Web Push"></i></a>
+                        {% endif %}
+                        {% endif %}
+
+                        {% if item.is_email != False %}
+                        {% if item.email %}
+                        <a href="{% url 'email_update' item.email.id %}"><i class="fas fa-envelope-square"
+                                style="color:green" title="E-mail"></i></a>
+                        {% else %}
+                        <a href="{% url 'email_new' item.id %}"><i class="fas fa-envelope-square" style="color:red"
+                                title="E-mail"></i></a>
+                        {% endif %}
+                        {% endif %}
+
+                        {% if item.is_sms != False %}
+                        {% if item.sms %}
+                        <a href="{% url 'sms_update' item.sms.id %}"><i class="fas fa-sms" style="color:green"
+                                title="SMS"></i></a>
+                        {% else %}
+                        <a href="{% url 'sms_new' item.id %}"><i class="fas fa-sms" style="color:red"
+                                title="SMS"></i></a>
+                        {% endif %}
+                        {% endif %}
+                    </td>
+                    <td>
+
+                        <a class="btn btn-warning btn-sm" href="{% url 'application_update' item.id %}" role="button">
+                            <i class="fas fa-xs fa-edit" title="Alterar"></i> </a>
+                        <a class="btn btn-danger btn-sm"
+                            href="{% url 'application_delete' item.id %}" role="button"> <i class="fas fa-xs fa-trash"
+                                title="Excluir"></i></a>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock content %}

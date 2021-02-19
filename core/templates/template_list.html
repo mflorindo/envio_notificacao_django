@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <img class="card-img-top" src="holder.js/100px180/" alt="">
+    <div class="card-body">
+        <h4 class="card-title">Meus Templates de Email
+            <span class="float-right"><a name="" id="" class="btn btn-xs btn-primary" href="{% url 'template_new' %}"
+                    role="button">Novo Template</a></span>
+        </h4>
+
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in objects  %}
+                <tr>
+                    <td scope="row">{{ item.title }}</td>
+                    <td>
+                        <a class="btn btn-danger btn-sm" href="{% url 'template_delete' item.id %}" role="button"> <i
+                                class="fas fa-xs fa-trash" title="Excluir"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock content %}

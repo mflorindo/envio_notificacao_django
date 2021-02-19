@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <form method="post">
+        {% csrf_token %}
+        <img class="card-img-top" src="holder.js/100px180/" alt="">
+        <div class="card-body">
+            <h4 class="card-title">SMS {{ application }}</h4>
+            <hr>
+
+            <div class="row">
+                <div class='col-md-4'>
+                    <label>{{ form.provider.label }}</label>
+                    {{ form.provider }}
+                </div>
+                <div class='col-md-4'>
+                    <label>{{ form.login.label }}</label>
+                    {{ form.login }}
+                </div>
+                <div class='col-md-4'>
+                    <label>{{ form.password.label }}</label>
+                    {{ form.password }}
+                </div>
+
+            </div>
+
+            <div class="card-footer mt-2">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <a class="btn btn-default" href="{% url 'application_list' %}" role="button">Cancelar</a>
+
+                {% if object %}
+                <a class="btn btn-danger float-right" href="{% url 'sms_delete' object.id %}" role="button">Excluir</a>
+                {% endif %}
+            </div>
+    </form>
+</div>
+
+
+{% endblock content %}

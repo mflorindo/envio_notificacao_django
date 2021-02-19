@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <form method="post">
+        {% csrf_token %}
+        <img class="card-img-top" src="holder.js/100px180/" alt="">
+        <div class="card-body">
+            <h4 class="card-title">Template</h4>
+            <hr>
+
+            <p>Você deseja excluir template:  "{{ object }}"?</p>
+        </div>
+
+        <div class="card-footer mt-2">
+            <button type="submit" class="btn btn-danger">Excluir</button>
+            <a class="btn btn-default" href="{% url 'template_list' %}" role="button">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+
+{% endblock content %}

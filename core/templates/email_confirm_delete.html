@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <form method="post">
+        {% csrf_token %}
+        <div class="card-body">
+            <h4 class="card-title">SMS</h4>
+            <hr>
+
+            <p>Você deseja excluir os dados do E-mail: "{{ object }}"?</p>
+        </div>
+
+        <div class="card-footer mt-2">
+            <button type="submit" class="btn btn-danger">Excluir</button>
+            <a class="btn btn-default" href="{% url 'application_list' %}" role="button">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+
+{% endblock content %}
